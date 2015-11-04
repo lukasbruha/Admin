@@ -1,6 +1,8 @@
 Admin
 ======
 
+Customized version of Admin Kollarovic
+
 Admin
 -----
 
