@@ -10,7 +10,7 @@ use Nette\Security\User;
 
 
 /**
- * @method AdminControl setTemplateFile(string $templateFile)
+ * @method AdminControl setLayout(array $layout)
  * @method AdminControl setPageTitle(string $pageTitle)
  * @method AdminControl setSkin(string $skin)
  * @method AdminControl setAdminName(string $adminName)
@@ -20,12 +20,15 @@ use Nette\Security\User;
  * @method AdminControl setContent(string $content)
  * @method AdminControl setHeader(string $header)
  * @method AdminControl setFooter(string $footer)
+ * @method AdminControl setProfile(string $profile)
+ * @method AdminControl setSignOut(string $signOut)
+ * @method AdminControl setSearch(string $search)
  * @method AdminControl setNavbar(string $navbar)
  * @method AdminControl setNavigationName(string $navigationName)
  * @method AdminControl setProfileUrl(string $profileUrl)
  * @method AdminControl setAjaxRequest($ajaxRequest)
  *
- * @method string getTemplateFile()
+ * @method array getLayout()
  * @method string getPageTitle()
  * @method string getSkin()
  * @method string getAdminName()
@@ -35,6 +38,9 @@ use Nette\Security\User;
  * @method string getContent()
  * @method string getHeader()
  * @method string getFooter()
+ * @method string getProfile()
+ * @method string getSignOut()
+ * @method string getSearch()
  * @method string getNavbar()
  * @method string getNavigationName()
  * @method string getProfileUrl()
@@ -42,7 +48,7 @@ use Nette\Security\User;
  */
 class AdminControl extends Control
 {
-
+	
 	/** @var array */
 	public $onLoggedOut;
 
@@ -57,9 +63,6 @@ class AdminControl extends Control
 
 	/** @var User */
 	private $user;
-
-	/** @var string */
-	private $templateFile;
 
 	/** @var string */
 	private $pageTitle;
@@ -87,6 +90,15 @@ class AdminControl extends Control
 
 	/** @var string */
 	private $footer;
+	
+	/** @var string */
+	private $profile;
+	
+	/** @var string */
+	private $signOut;
+	
+	/** @var string */
+	private $search;
 
 	/** @var string */
 	private $navbar;
@@ -99,20 +111,25 @@ class AdminControl extends Control
 
 	/** @var boolean */
 	private $ajaxRequest = FALSE;
+	
+	/** @var array */
+	private $layout;
+	
+	
 
 
 	function __construct(ItemsFactory $itemsFactory, ILoaderFactory $loaderFactory, User $user)
 	{
+		parent::__construct();
 		$this->itemsFactory = $itemsFactory;
 		$this->loaderFactory = $loaderFactory;
 		$this->user = $user;
-		$this->templateFile = __DIR__ . '/templates/AdminControl.latte';
 	}
 
 
 	public function render(array $options = [])
 	{
-		$this->template->setFile($this->getTemplateFile());
+		$this->template->setFile($this->getLayout()['templates']['admin']);
 		$this->template->pageTitle = $this->pageTitle;
 		$this->template->skin = $this->skin;
 		$this->template->profileUrl = $this->profileUrl;
@@ -123,6 +140,9 @@ class AdminControl extends Control
 		$this->template->content = $this->content;
 		$this->template->header = $this->header;
 		$this->template->footer = $this->footer;
+		$this->template->profile = $this->profile;
+		$this->template->signOut = $this->signOut;
+		$this->template->search = $this->search;
 		$this->template->navbar = $this->navbar;
 		$this->template->ajax = $this->ajaxRequest;
 		$this->template->rootItem = $this->getRootItem();
@@ -181,7 +201,7 @@ class AdminControl extends Control
 
 	protected function createComponentNavigation()
 	{
-		return new NavigationControl($this->getRootItem());
+		return new NavigationControl($this->getRootItem(), $this->layout);
 	}
 
 
@@ -189,5 +209,6 @@ class AdminControl extends Control
 	{
 		return $this->itemsFactory->create($this->navigationName);
 	}
+
 
 }

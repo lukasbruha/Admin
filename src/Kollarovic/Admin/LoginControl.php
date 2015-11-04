@@ -7,6 +7,7 @@ use Nette\Application\UI\Control;
 
 /**
  * @method LoginControl setTemplateFile(string $templateFile)
+ * @method LoginControl setLayout(array $layout)
  * @method LoginControl setPageTitle(string $pageTitle)
  * @method LoginControl setPageName(string $pageName)
  * @method LoginControl setPageMsg(string $pageMsg)
@@ -14,6 +15,7 @@ use Nette\Application\UI\Control;
  * @method LoginControl setPasswordIcon(string $passwordIcon)
  *
  * @method string getTemplateFile()
+ * @method array  getLayout()
  * @method string getPageTitle()
  * @method string getPageName()
  * @method string getPageMsg()
@@ -49,6 +51,9 @@ class LoginControl extends Control
 
 	/** @var string */
 	private $passwordIcon;
+	
+	/** @var array */
+	private $layout;
 
 
 	function __construct(ILoginFormFactory $loginFormFactory, ILoaderFactory $loaderFactory)
