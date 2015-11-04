@@ -8,6 +8,10 @@
 		{
 			"name": "Mario Kollarovic",
 			"email": "kollarovic@gmail.com"
+		},
+		{
+			"name": "Jan Vanura",
+			"email": "jano.vano@gmail.com"
 		}
 	],
 
@@ -27,5 +31,6 @@
 		"psr-0": {
 			"Kollarovic\\Admin": "src/"
 		}
-	}
+	},
+	"minimum-stability": "dev"
 }
