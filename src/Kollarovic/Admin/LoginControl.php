@@ -6,7 +6,6 @@ use Nette\Application\UI\Control;
 
 
 /**
- * @method LoginControl setTemplateFile(string $templateFile)
  * @method LoginControl setLayout(array $layout)
  * @method LoginControl setPageTitle(string $pageTitle)
  * @method LoginControl setPageName(string $pageName)
@@ -14,7 +13,6 @@ use Nette\Application\UI\Control;
  * @method LoginControl setUsernameIcon(string $usernameIcon)
  * @method LoginControl setPasswordIcon(string $passwordIcon)
  *
- * @method string getTemplateFile()
  * @method array  getLayout()
  * @method string getPageTitle()
  * @method string getPageName()
@@ -27,9 +25,6 @@ class LoginControl extends Control
 
 	/** @var array */
 	public $onLoggedIn;
-
-	/** @var string */
-	private $templateFile;
 
 	/** @var ILoginFormFactory */
 	private $loginFormFactory;
@@ -58,15 +53,15 @@ class LoginControl extends Control
 
 	function __construct(ILoginFormFactory $loginFormFactory, ILoaderFactory $loaderFactory)
 	{
+		parent::__construct();
 		$this->loginFormFactory = $loginFormFactory;
 		$this->loaderFactory = $loaderFactory;
-		$this->templateFile = __DIR__ . '/templates/LoginControl.latte';
 	}
 
 
 	public function render(array $options = [])
 	{
-		$this->template->setFile($this->getTemplateFile());
+		$this->template->setFile($this->layout['templates']['login']);
 		$this->template->pageTitle = $this->pageTitle;
 		$this->template->pageName = $this->pageName;
 		$this->template->pageMsg = $this->pageMsg;
