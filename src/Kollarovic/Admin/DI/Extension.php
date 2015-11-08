@@ -48,7 +48,7 @@ class Extension extends Nette\DI\CompilerExtension {
 		$builder->addDefinition($this->prefix('formRender'))
 				->setClass('Tomaj\Form\Renderer\BootstrapRenderer')
 				->setAutowired(FALSE);
-
+		
 		$builder->addDefinition($this->prefix('baseFormFactory'))
 				->setClass('Kollarovic\Admin\Form\BaseFormFactory', [
 					'formRender' => $this->prefix('@formRender')
@@ -114,6 +114,27 @@ class Extension extends Nette\DI\CompilerExtension {
 					'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js',
 					"$dirA/AdminLTE/app.min.js",
 					"$dirA/netteForms.js",
+					"https://code.jquery.com/jquery-1.11.3.min.js",
+					"https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
+					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
+					"https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
+					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
+					"$dirA/nette.ajax.js",
+					"$dirA/confirm.ajax.js",
+					"$dirA/jasny-fileinput.ajax.js",
+					"$dirA/nette.init.js",
+					"$dirA/grido.css",
+					"$dirA/grido.js",
+					"$dirA/grido.ext.js",
+					"$dirA/grido.ajax.js",
+					"$dirA/typeahead.min.js",
+					"$dirA/jquery.hashchange.min.js",
+					"$dirA/jasny-fileinput.auto.min.js",
+					"$dirA/jasny-fileinput.min.js",
+					"$dirA/jasny-fileinput.auto.min.js",
+					"$dirA/jasny-fileinput.min.css",
+					"$dirA/typeahead.css",
+					"$dirA/admin.js",
 				],
 			],
 			'Metronic5Material' => [
@@ -123,6 +144,28 @@ class Extension extends Nette\DI\CompilerExtension {
 					'navigationDir' => 'Metronic5Material',
 				],
 				'files' => [
+					"https://code.jquery.com/jquery-1.11.3.min.js",
+					"https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
+					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
+					"https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
+					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
+					"$dirA/nette.ajax.js",
+					"$dirA/confirm.ajax.js",
+					"$dirA/dateinput.ajax.js",
+					"$dirA/jasny-fileinput.ajax.js",
+					"$dirA/nette.init.js",
+					"$dirA/grido.css",
+					"$dirA/grido.js",
+					"$dirA/grido.ext.js",
+					"$dirA/grido.ajax.js",
+					"$dirA/typeahead.min.js",
+					"$dirA/jquery.hashchange.min.js",
+					"$dirA/jasny-fileinput.auto.min.js",
+					"$dirA/jasny-fileinput.min.js",
+					"$dirA/jasny-fileinput.auto.min.js",
+					"$dirA/jasny-fileinput.min.css",
+					"$dirA/typeahead.css",
+					"$dirA/admin.js",
 					"$dirA/Metronic5Material/admin.css",
 					"$dirA/Metronic5Material/admin.js",
 					"$dirA/netteForms.js",
