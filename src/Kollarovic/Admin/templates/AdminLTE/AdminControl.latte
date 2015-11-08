@@ -87,7 +87,7 @@
 					{snippet flash}
 						<div n:foreach="$presenter->template->flashes as $flash" class="alert alert-{$flash->type} alert-dismissible" n:block="flashes">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-							<p>{if $flash->type != "danger"}<i class="icon fa fa-check"></i>{else}<i class="icon fa fa-ban"></i>{/if} {_$flash->message}</p>						
+							{_$flash->message}					
 						</div>
 					{/snippet}
 					{$content|noescape}

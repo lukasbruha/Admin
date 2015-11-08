@@ -26,6 +26,10 @@ class Extension extends Nette\DI\CompilerExtension {
 				'pageMsg' => 'Authentication',
 				'usernameIcon' => 'envelope',
 				'passwordIcon' => 'lock',
+				'forgotPass' => 'Forgot Password?',
+				'logo' => '',
+				'bg' => '',
+				'resetPassMsg' => 'On your email was send another instruction.',
 			],
 		];
 	}
@@ -52,6 +56,9 @@ class Extension extends Nette\DI\CompilerExtension {
 
 		$builder->addDefinition($this->prefix('loginFormFactory'))
 				->setClass('Kollarovic\Admin\LoginFormFactory');
+		
+		$builder->addDefinition($this->prefix('resetFormFactory'))
+				->setClass('Kollarovic\Admin\ResetFormFactory');
 
 		$builder->addDefinition($this->prefix('loginControlFactory'))
 				->setImplement('Kollarovic\Admin\ILoginControlFactory')
@@ -60,6 +67,10 @@ class Extension extends Nette\DI\CompilerExtension {
 				->addSetup('setPageMsg', [$config['login']['pageMsg']])
 				->addSetup('setUsernameIcon', [$config['login']['usernameIcon']])
 				->addSetup('setLayout', [$this->getLayout($config['layout'])])
+				->addSetup('setForgotPass', [$config['login']['forgotPass']])
+				->addSetup('setResetPassMsg', [$config['login']['resetPassMsg']])
+				->addSetup('setLogo', [$config['login']['logo']])
+				->addSetup('setBg', [$config['login']['bg']])
 				->addSetup('setPasswordIcon', [$config['login']['passwordIcon']]);
 
 		$builder->addDefinition($this->prefix('adminControlFactory'))

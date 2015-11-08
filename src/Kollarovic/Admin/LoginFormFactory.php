@@ -7,66 +7,71 @@ use Nette\Security\User;
 use Nette\Security\AuthenticationException;
 use Kollarovic\Admin\Form\IBaseFormFactory;
 use Nette\Application\UI\Form;
+use Nette\Localization\ITranslator;
 
-
-class LoginFormFactory extends Object implements ILoginFormFactory
-{
+class LoginFormFactory extends Object implements ILoginFormFactory {
 
 	/** @var User */
 	private $user;
 
-	/** @var string */
-	private $username;
-
 	/** @var IBaseFormFactory */
 	private $baseFormFactory;
 
+	/** @var ITranslator */
+	private $translator;
 
-	function __construct(User $user, $username = 'email', IBaseFormFactory $baseFormFactory)
-	{
+	function __construct(User $user, IBaseFormFactory $baseFormFactory) {
+
 		$this->user = $user;
-		$this->username = $username;
 		$this->baseFormFactory = $baseFormFactory;
+		$this->translator = $baseFormFactory->translator;
 	}
 
-
-	public function create()
-	{
+	public function create() {
 		$form = $this->baseFormFactory->create();
 
-		if ($this->username == 'email') {
-			$form->addText('username', 'Email')
-				->setAttribute('placeholder', 'Email')
-				->setRequired('Please enter your email.')
-				->addRule(Form::EMAIL, 'Please enter a valid email address.');
+		if ($this->translator) {
+
+			$form->addText('email', 'backend.login.form.email')
+					->setAttribute('placeholder', 'backend.login.form.email')
+					->setRequired('backend.login.form.errEmail')
+					->addRule(Form::EMAIL, 'backend.login.form.validEmail');
+
+
+			$form->addPassword('password', 'backend.login.form.password')
+					->setAttribute('placeholder', 'backend.login.form.password')
+					->setRequired('backend.login.form.errPassword');
+
+			$form->addCheckbox('remember', 'backend.login.form.remember');
+			$form->addSubmit('submit', 'backend.login.form.signin');
 		} else {
-			$form->addText('username', 'Username')
-				->setAttribute('placeholder', 'Username')
-				->setRequired('Please enter your username.');
+
+			$form->addText('email', 'Email')
+					->setAttribute('placeholder', 'Email')
+					->setRequired('Please enter your email.')
+					->addRule(Form::EMAIL, 'Please enter a valid email address.');
+
+
+			$form->addPassword('password', 'Password')
+					->setAttribute('placeholder', 'Password')
+					->setRequired('Please enter your password.');
+
+			$form->addCheckbox('remember', 'Remember Me');
+			$form->addSubmit('submit', 'Sign In');
 		}
-
-		$form->addPassword('password', 'Password')
-			->setAttribute('placeholder', 'Password')
-			->setRequired('Please enter your password.');
-
-		$form->addCheckbox('remember', 'Remember Me');
-		$form->addSubmit('submit', 'Sign In');
 		$form->onSuccess[] = $this->process;
 		return $form;
 	}
 
-
-	public function process(Form $form)
-	{
+	public function process(Form $form) {
 		$values = $form->values;
 		try {
 			if ($values->remember) {
 				$this->user->setExpiration('14 days', FALSE);
 			} else {
-				$this->user->setExpiration(0, TRUE);
-			}			
-			$this->user->login($values->username, $values->password);
-
+				$this->user->setExpiration('30 minutes', TRUE);
+			}
+			$this->user->login($values->email, $values->password);
 		} catch (AuthenticationException $e) {
 			$form->addError($e->getMessage());
 		}
