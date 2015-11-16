@@ -17,6 +17,7 @@ class Extension extends Nette\DI\CompilerExtension {
 			'signout' => 'Sign Out',
 			'search' => 'Search',
 			'ajax' => FALSE,
+			'showSearch' => TRUE,
 			'layout' => 'AdminLTE',
 			'files' => [],
 			'navigation' => 'admin',
@@ -79,6 +80,7 @@ class Extension extends Nette\DI\CompilerExtension {
 				->addSetup('setAdminName', [$config['name']])
 				->addSetup('setNavigationName', [$config['navigation']])
 				->addSetup('setFooter', [$config['footer']])
+				->addSetup('setShowSearch', [$config['showSearch']])
 				->addSetup('setProfile', [$config['profile']])
 				->addSetup('setSignOut', [$config['signout']])
 				->addSetup('setSearch', [$config['search']])
@@ -86,6 +88,18 @@ class Extension extends Nette\DI\CompilerExtension {
 				->addSetup('setAjaxRequest', [$config['ajax']]);
 	}
 
+	
+	
+	
+	public function afterCompile(Nette\PhpGenerator\ClassType $class) {
+		parent::afterCompile($class);
+		
+		$initialize = $class->methods['initialize'];
+		$initialize->addBody('RadekDostal\NetteComponents\DateTimePicker\DateTimePicker::register();');
+		$initialize->addBody('Kollarovic\Admin\Grido\Boolean::register();');
+	}
+	
+	
 	
 	/**
 	 * 
@@ -121,6 +135,8 @@ class Extension extends Nette\DI\CompilerExtension {
 					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
 					"$dirA/nette.ajax.js",
 					"$dirA/confirm.ajax.js",
+					"$dirA/dateinput.ajax.js",
+					"$dirA/dateinput.cs.js",
 					"$dirA/jasny-fileinput.ajax.js",
 					"$dirA/nette.init.js",
 					"$dirA/grido.css",
@@ -129,6 +145,7 @@ class Extension extends Nette\DI\CompilerExtension {
 					"$dirA/grido.ajax.js",
 					"$dirA/typeahead.min.js",
 					"$dirA/jquery.hashchange.min.js",
+					"$dirA/jquery.maskedinput.min.js",
 					"$dirA/jasny-fileinput.auto.min.js",
 					"$dirA/jasny-fileinput.min.js",
 					"$dirA/jasny-fileinput.auto.min.js",
@@ -152,6 +169,7 @@ class Extension extends Nette\DI\CompilerExtension {
 					"$dirA/nette.ajax.js",
 					"$dirA/confirm.ajax.js",
 					"$dirA/dateinput.ajax.js",
+					"$dirA/dateinput.cs.js",
 					"$dirA/jasny-fileinput.ajax.js",
 					"$dirA/nette.init.js",
 					"$dirA/grido.css",
@@ -160,6 +178,7 @@ class Extension extends Nette\DI\CompilerExtension {
 					"$dirA/grido.ajax.js",
 					"$dirA/typeahead.min.js",
 					"$dirA/jquery.hashchange.min.js",
+					"$dirA/jquery.maskedinput.min.js",
 					"$dirA/jasny-fileinput.auto.min.js",
 					"$dirA/jasny-fileinput.min.js",
 					"$dirA/jasny-fileinput.auto.min.js",

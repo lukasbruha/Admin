@@ -34,7 +34,8 @@
 
             $.fn.datepicker === undefined
                 ? console.error('Plugin "bootstrap-datepicker.js" is missing!')
-                : $(this).datepicker({format: _this.options.datepicker.format});
+            //    : $(this).datepicker({format: _this.options.datepicker.format});
+                : $(this).datepicker({dateFormat: 'dd.mm.yy'});
         });
     };
 

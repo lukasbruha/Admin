@@ -26,7 +26,8 @@ use Nette\Security\User;
  * @method AdminControl setNavbar(string $navbar)
  * @method AdminControl setNavigationName(string $navigationName)
  * @method AdminControl setProfileUrl(string $profileUrl)
- * @method AdminControl setAjaxRequest($ajaxRequest)
+ * @method AdminControl setShowSearch(boolean $ajaxRequest)
+ * @method AdminControl setAjaxRequest(boolean $ajaxRequest)
  *
  * @method array getLayout()
  * @method string getPageTitle()
@@ -44,6 +45,7 @@ use Nette\Security\User;
  * @method string getNavbar()
  * @method string getNavigationName()
  * @method string getProfileUrl()
+ * @method boolean isShowSearch()
  * @method boolean isAjaxRequest()
  */
 class AdminControl extends Control
@@ -112,6 +114,9 @@ class AdminControl extends Control
 	/** @var boolean */
 	private $ajaxRequest = FALSE;
 	
+	/** @var boolean */
+	private $showSearch;
+	
 	/** @var array */
 	private $layout;
 	
@@ -145,6 +150,7 @@ class AdminControl extends Control
 		$this->template->search = $this->search;
 		$this->template->navbar = $this->navbar;
 		$this->template->ajax = $this->ajaxRequest;
+		$this->template->showSearch = $this->showSearch;
 		$this->template->rootItem = $this->getRootItem();
 		foreach ($options as $key => $value) {
 			$this->template->$key = $value;
