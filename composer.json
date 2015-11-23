@@ -20,7 +20,8 @@
 		"nette/nette": "~2.2",
 		"darkling/admin-navigation": "dev-master",
 		"janmarek/webloader": "~2.4.0",
-		"radekdostal/nette-datetimepicker": "~2.2"
+		"radekdostal/nette-datetimepicker": "~2.2",
+		"joseki/webloader-filters": "@stable"
 	},
 
 	"require-dev": {

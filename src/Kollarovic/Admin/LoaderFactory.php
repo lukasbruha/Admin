@@ -64,6 +64,8 @@ class LoaderFactory extends Object implements ILoaderFactory
 	{
 		$fileCollection = $this->createFileCollection(array_filter($this->files, [$this, 'isCss']));
 		$compiler = Compiler::createCssCompiler($fileCollection, $this->wwwDir . '/' . $this->outputDir);
+		$compiler->addFilter(new \Joseki\Webloader\CssMinFilter());
+		$compiler->addFileFilter(new \WebLoader\Nette\CssUrlFilter($this->wwwDir . '/', $this->httpRequest));
 		return new CssLoader($compiler, $this->httpRequest->url->basePath . $this->outputDir);
 	}
 
@@ -72,6 +74,7 @@ class LoaderFactory extends Object implements ILoaderFactory
 	{
 		$fileCollection = $this->createFileCollection(array_filter($this->files, [$this, 'isJs']));
 		$compiler = Compiler::createJsCompiler($fileCollection, $this->wwwDir . '/' . $this->outputDir);
+		$compiler->addFilter(new \Joseki\Webloader\JsMinFilter());
 		return new JavaScriptLoader($compiler, $this->httpRequest->url->basePath . $this->outputDir);
 	}
 
