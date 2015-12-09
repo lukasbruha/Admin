@@ -11,6 +11,7 @@ class Extension extends Nette\DI\CompilerExtension {
 		return [
 			'wwwDir' => '%wwwDir%',
 			'name' => 'Admin',
+			'logo' => NULL,
 			'skin' => 'red',
 			'footer' => '',
 			'profile' => 'Profile',
@@ -83,6 +84,7 @@ class Extension extends Nette\DI\CompilerExtension {
 				->addSetup('setShowSearch', [$config['showSearch']])
 				->addSetup('setProfile', [$config['profile']])
 				->addSetup('setSignOut', [$config['signout']])
+				->addSetup('setLogo', [$config['logo']])
 				->addSetup('setSearch', [$config['search']])
 				->addSetup('setLayout', [$this->getLayout($config['layout'])])
 				->addSetup('setAjaxRequest', [$config['ajax']]);
@@ -187,6 +189,7 @@ class Extension extends Nette\DI\CompilerExtension {
 					"$dirA/admin.js",
 					"$dirA/Metronic5Material/admin.css",
 					"$dirA/Metronic5Material/admin.js",
+					"$dirA/uniform.checkbox.ajax.js",
 					"$dirA/netteForms.js",
 				],
 			],

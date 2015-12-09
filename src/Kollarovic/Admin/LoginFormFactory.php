@@ -73,7 +73,11 @@ class LoginFormFactory extends Object implements ILoginFormFactory {
 			}
 			$this->user->login($values->email, $values->password);
 		} catch (AuthenticationException $e) {
-			$form->addError($e->getMessage());
+			if ($this->translator) {
+				$form->addError($this->translator->translate('backend.login.form.errLogin'));
+			} else {
+				$form->addError($e->getMessage());
+			}
 		}
 	}
 

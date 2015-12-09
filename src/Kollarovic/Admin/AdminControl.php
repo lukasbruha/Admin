@@ -13,6 +13,7 @@ use Nette\Security\User;
  * @method AdminControl setLayout(array $layout)
  * @method AdminControl setPageTitle(string $pageTitle)
  * @method AdminControl setSkin(string $skin)
+ * @method AdminControl setLogo(string $logo)
  * @method AdminControl setAdminName(string $adminName)
  * @method AdminControl setUserName(string $userName)
  * @method AdminControl setUserImage(string $userImage)
@@ -31,6 +32,7 @@ use Nette\Security\User;
  *
  * @method array getLayout()
  * @method string getPageTitle()
+ * @method string getLogo()
  * @method string getSkin()
  * @method string getAdminName()
  * @method string getUserName()
@@ -71,6 +73,9 @@ class AdminControl extends Control
 
 	/** @var string */
 	private $skin;
+	
+	/** @var string */
+	private $logo;
 
 	/** @var string */
 	private $adminName;
@@ -151,6 +156,7 @@ class AdminControl extends Control
 		$this->template->navbar = $this->navbar;
 		$this->template->ajax = $this->ajaxRequest;
 		$this->template->showSearch = $this->showSearch;
+		$this->template->logo = $this->logo;
 		$this->template->rootItem = $this->getRootItem();
 		foreach ($options as $key => $value) {
 			$this->template->$key = $value;
