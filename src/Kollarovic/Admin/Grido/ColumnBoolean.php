@@ -7,16 +7,15 @@ use Grido\Components\Columns\Text;
 use Nette\Utils\Html;
 
 
-class Boolean extends Text
-{
+class ColumnBoolean extends Text {
 
-	public static $ITEMS = ['' => '', 1 => 'Yes', 0 => 'No'];
+	const ITEMS = ['' => '', 1 => 'Ano', 0 => 'Ne'];
 
 
 	public static function register(){
 		
 		Grid::extensionMethod('addColumnBoolean', function (Grid $grid, $name, $label) {
-			return new Boolean($grid, $name, $label);
+			return new ColumnBoolean($grid, $name, $label);
 		});
 	}
 

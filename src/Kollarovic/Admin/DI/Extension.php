@@ -98,7 +98,7 @@ class Extension extends Nette\DI\CompilerExtension {
 		
 		$initialize = $class->methods['initialize'];
 		$initialize->addBody('RadekDostal\NetteComponents\DateTimePicker\DateTimePicker::register();');
-		$initialize->addBody('Kollarovic\Admin\Grido\Boolean::register();');
+		$initialize->addBody('Kollarovic\Admin\Grido\ColumnBoolean::register();');
 	}
 	
 	
