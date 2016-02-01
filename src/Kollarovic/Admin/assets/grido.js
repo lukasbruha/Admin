@@ -149,7 +149,7 @@
             $('td[class*="grid-cell-"]', this.$element)
                 .off('dblclick.grido')
                 .on('dblclick.grido', function(event) {
-                    if (event.metaKey || event.ctrlKey) {
+                    if (helpers.isCtrl(event) && !$(this).hasClass('edit')) {
                         this.editable = new Grido.Editable(that).init($(this));
                     }
             });
@@ -241,7 +241,7 @@
                         that.disableSelection.call(that);
                     }
 
-                    $('th.checker [type=checkbox]', $(this).parent()).click();
+                    $(that.selector, $(this).closest('tr')).click();
 
                     if (event.shiftKey) {
                         that.enableSelection.call(that);
@@ -427,8 +427,13 @@
                     : this.coolUri($.param(params));
 
                 $.data(document, this.grido.name + '-state', hash);
-                location.hash = hash;
+                this.changeLocationHash(hash);
             }
+        },
+
+        changeLocationHash: function(hash)
+        {
+            location.hash = hash;
         },
 
         handleHashChangeEvent: function()
@@ -544,7 +549,7 @@
         getComponentName: function($th)
         {
             var handler = this.getEditControlHandlerUrl($th).replace('/[\.d]*/g', '');
-            handler = handler.match(/[\??\&?][do=]+(.*)/)[1];
+            handler = handler.match(/[\??\&?](do=)+(.*)/)[2];
 
             return handler.match(/(.*)\-edit/)[1];
         },
@@ -656,14 +661,16 @@
          * @param {jQuery} $th header cell of column
          * @param {jQuery} $td edited cell
          */
-        saveData: function(oldValue, componentName, primaryKey, $th, $td)
+        saveData: function(oldValue, componentName, primaryKey, $th, $td, oldHtml)
         {
             var data = {},
                 that = this,
-                newValue = this.editControlObject.val();
+                newValue = $('[type=checkbox]', this.editControlObject).length
+                    ? ~~+ $('[type=checkbox]', this.editControlObject).is(':checked')
+                    : this.editControlObject.val();
 
             if (newValue === oldValue) {
-                $td.html(oldValue);
+                $td.html(oldHtml);
                 return;
             }
 
@@ -679,7 +686,11 @@
             })
             .success(function(data) {
                 if (data.updated === true) {
-                    $td.html(newValue);
+		    if (data.html) {
+			$td.html(data.html);
+		    } else {
+			$td.html(newValue);
+		    }
                     $td.data('grido-editable-value', newValue);
                     that.oldValue = newValue;
                     that.flashSuccess($td);
@@ -751,19 +762,15 @@
             var keypress = function(event)
             {
                 if (event.keyCode === 13) { //enter
-                    if (typeof window.Nette === 'object' && !window.Nette.validateControl(this)) {
-                        event.preventDefault();
-                        return false;
+                    if (this.tagName === 'TEXTAREA') {
+                        return;
                     }
 
-                    that.saveData(that.value, that.componentName, that.primaryKey, that.th, that.td);
-                    that.td.removeClass('edit');
-
+                    saveData(this);
                     event.preventDefault();
                     return false;
                 }
             };
-
             var keydown = function(event)
             {
                 if (event.keyCode === 27) { //esc
@@ -772,6 +779,20 @@
 
                     event.preventDefault();
                     return false;
+                } else if (helpers.isCtrl(event) && event.keyCode === 13) { //CTRL/CMD + ENTER
+                    saveData(this);
+
+                    event.preventDefault();
+                    return false;
+                }
+            };
+            var saveData = function(element)
+            {
+                if (typeof window.Nette === 'object' && !window.Nette.validateControl(element)) {
+                    return false; //validation fail
+                } else {
+                    that.saveData(that.value, that.componentName, that.primaryKey, that.th, that.td, that.oldValue);
+                    that.td.removeClass('edit');
                 }
             };
 
@@ -780,6 +801,17 @@
                  .on('keypress.grido', keypress)
                 .off('keydown.grido')
                  .on('keydown.grido',  keydown);
+        }
+    };
+
+    /*        GRIDO HELPERS       */
+    /* ========================== */
+
+    var helpers =
+    {
+        isCtrl: function(event)
+        {
+            return (event.ctrlKey || event.metaKey) && !event.altKey;
         }
     };
 
