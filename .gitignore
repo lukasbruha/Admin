@@ -4,3 +4,4 @@ vendor
 composer.lock
 .idea
 tests
+/PhpProject1/nbproject/private/
