@@ -43,7 +43,7 @@ class Extension extends Nette\DI\CompilerExtension {
 		$loaderFactory = $builder->addDefinition($this->prefix('loaderFactory'))
 				->setClass('Kollarovic\Admin\LoaderFactory', ['wwwDir' => $config['wwwDir']]);
 
-		foreach (array_merge($this->getLayout($config['layout'])['files'], $config['files']) as $file) {
+		foreach (array_merge($this->getCoreFiles(), $this->getLayout($config['layout'])['files'], $config['files']) as $file) {
 			$loaderFactory->addSetup('addFile', [$file]);
 		}
 
@@ -98,7 +98,6 @@ class Extension extends Nette\DI\CompilerExtension {
 		
 		$initialize = $class->methods['initialize'];
 		$initialize->addBody('RadekDostal\NetteComponents\DateTimePicker\DateTimePicker::register();');
-		$initialize->addBody('Kollarovic\Admin\Grido\ColumnBoolean::register();');
 	}
 	
 	
@@ -121,78 +120,12 @@ class Extension extends Nette\DI\CompilerExtension {
 					'navigationDir' => 'AdminLTE',
 				],
 				'files' => [
-					'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
-					'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
 					"$dirA/AdminLTE/AdminLTE.min.css",
 					"$dirA/AdminLTE/_all-skins.min.css",
 					"$dirA/AdminLTE/admin.css",
-					'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
-					'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js',
 					"$dirA/AdminLTE/app.min.js",
-					"$dirA/netteForms.js",
-					"https://code.jquery.com/jquery-1.11.3.min.js",
-					"https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
-					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
-					"https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
-					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
-					"$dirA/nette.ajax.js",
-					"$dirA/confirm.ajax.js",
-					"$dirA/dateinput.ajax.js",
-					"$dirA/dateinput.cs.js",
-					"$dirA/jasny-fileinput.ajax.js",
-					"$dirA/nette.init.js",
-					"$dirA/grido.css",
-					"$dirA/grido.js",
-					"$dirA/grido.ext.js",
-					"$dirA/grido.ajax.js",
-					"$dirA/typeahead.min.js",
-					"$dirA/jquery.hashchange.min.js",
-					"$dirA/jquery.maskedinput.min.js",
-					"$dirA/jasny-fileinput.auto.min.js",
-					"$dirA/jasny-fileinput.min.js",
-					"$dirA/jasny-fileinput.auto.min.js",
-					"$dirA/jasny-fileinput.min.css",
-					"$dirA/typeahead.css",
-					"$dirA/admin.js",
-				],
-			],
-			'Metronic5Material' => [
-				'templates' => [
-					'admin' => "$dirT/Metronic5Material/AdminControl.latte",
-					'login' => "$dirT/Metronic5Material/LoginControl.latte",
-					'navigationDir' => 'Metronic5Material',
-				],
-				'files' => [
-					"https://code.jquery.com/jquery-1.11.3.min.js",
-					"https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
-					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
-					"https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
-					"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
-					"$dirA/nette.ajax.js",
-					"$dirA/confirm.ajax.js",
-					"$dirA/dateinput.ajax.js",
-					"$dirA/dateinput.cs.js",
-					"$dirA/jasny-fileinput.ajax.js",
-					"$dirA/nette.init.js",
-					"$dirA/grido.css",
-					"$dirA/grido.js",
-					"$dirA/grido.ext.js",
-					"$dirA/grido.ajax.js",
-					"$dirA/typeahead.min.js",
-					"$dirA/jquery.hashchange.min.js",
-					"$dirA/jquery.maskedinput.min.js",
-					"$dirA/jasny-fileinput.auto.min.js",
-					"$dirA/jasny-fileinput.min.js",
-					"$dirA/jasny-fileinput.auto.min.js",
-					"$dirA/jasny-fileinput.min.css",
-					"$dirA/typeahead.css",
-					"$dirA/admin.js",
-					"$dirA/Metronic5Material/admin.css",
-					"$dirA/Metronic5Material/admin.js",
-					"$dirA/uniform.checkbox.ajax.js",
-					"$dirA/netteForms.js",
-				],
-			],
+				]
+			],			
 		];
 
 		if(!key_exists($layout, $layouts)){			
@@ -205,6 +138,33 @@ class Extension extends Nette\DI\CompilerExtension {
 		}
 		
 		return $layouts[$layout];
+	}
+	
+	
+	private function getCoreFiles(){
+		
+		$dirA = dirname(__DIR__) . '/assets';
+		
+		return [
+				'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+				'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',			
+				'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+				'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js',				
+				"https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
+				"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
+				"https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
+				"$dirA/netteForms.js",
+				"$dirA/nette.ajax.js",				
+				"$dirA/nette.init.js", 
+				"$dirA/dateinput/dateinput.ajax.js",
+				"$dirA/dateinput/dateinput.cs.js",
+				"$dirA/jasny-fileinput/jasny-fileinput.ajax.js",
+				"$dirA/jasny-fileinput/jasny-fileinput.auto.min.js",
+				"$dirA/jasny-fileinput/jasny-fileinput.min.js",
+				"$dirA/jasny-fileinput/jasny-fileinput.min.css",
+				"$dirA/admin.js",
+			];
 	}
 
 }
