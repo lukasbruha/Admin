@@ -7,6 +7,12 @@ $(document).ready(function () {
 		dateFormat: 'dd.mm.yy',
 		stepMinute: 5
 	});
+	
+	
+	$('a[data-toggle="tab"]').click(function() {
+		var title = $(this).text();
+		$('#tab-caption').text(title);
+	});
 
 
 	jQuery('.login-form').show();
