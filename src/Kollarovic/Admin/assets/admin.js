@@ -11,14 +11,8 @@ $(document).ready(function () {
 	// Javascript to enable link to tab
 	var hash = document.location.hash;
 	var prefix = "tab_";
-	if (hash) {
-		console.log('.nav-tabs a[href=#tab_1-3]');
-		console.log($('.nav-tabs a[href=#tab_1-3]').size());
-		
-		console.log('.nav-tabs a[href='+hash.replace(prefix,"")+']');
-		console.log($('.nav-tabs a[href='+hash.replace(prefix,"")+']').size());
-		
-		$('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+	if (hash) {		
+		$('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
 	} 
 
 	//-------------------------
