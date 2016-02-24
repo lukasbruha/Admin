@@ -30,7 +30,11 @@
 		"nette/security": "^2.3",
 		"nette/utils": "^2.3",
 		"latte/latte": "^2.3",
-		"tracy/tracy": "^2.3"
+		"tracy/tracy": "^2.3",
+		"darkling/admin-navigation": "^v1.0",
+		"janmarek/webloader": "^2.5.0",
+		"radekdostal/nette-datetimepicker": "^2.2",
+		"joseki/webloader-filters": "^v1.1"
 	},
 
 	"require-dev": {
