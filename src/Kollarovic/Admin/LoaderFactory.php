@@ -107,7 +107,7 @@ class LoaderFactory extends Object implements ILoaderFactory
 
 	private function isJs($file)
 	{
-		return preg_match('~\.js$~', $file);
+		return preg_match('~(\.js$|\/js)~', $file);
 	}
 
 }
