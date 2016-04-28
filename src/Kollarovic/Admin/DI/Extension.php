@@ -154,6 +154,8 @@ class Extension extends Nette\DI\CompilerExtension {
 				"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
 				"https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
 				"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css",
 				"$dirA/netteForms.js",
 				"$dirA/nette.ajax.js",	
 				"$dirA/confirm.ajax.js",			
