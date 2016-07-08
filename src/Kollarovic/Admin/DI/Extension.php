@@ -98,6 +98,7 @@ class Extension extends Nette\DI\CompilerExtension {
 		
 		$initialize = $class->methods['initialize'];
 		$initialize->addBody('RadekDostal\NetteComponents\DateTimePicker\DateTimePicker::register();');
+		$initialize->addBody('RadekDostal\NetteComponents\DateTimePicker\DatePicker::register();');
 	}
 	
 	
@@ -147,8 +148,8 @@ class Extension extends Nette\DI\CompilerExtension {
 		
 		return [
 				'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',			
-				'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+				'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
+				'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',
 				'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js',				
 				"https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
 				"https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css",
@@ -157,9 +158,9 @@ class Extension extends Nette\DI\CompilerExtension {
 				"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js",
 				"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css",
 				"$dirA/netteForms.js",
-				"$dirA/nette.ajax.js",	
-				"$dirA/confirm.ajax.js",			
-				"$dirA/nette.init.js", 
+				"$dirA/nette.ajax.js",
+				"$dirA/confirm.ajax.js",
+				"$dirA/nette.init.js",
 				"$dirA/dateinput/dateinput.ajax.js",
 				"$dirA/dateinput/dateinput.cs.js",
 				"$dirA/jasny-fileinput/jasny-fileinput.ajax.js",

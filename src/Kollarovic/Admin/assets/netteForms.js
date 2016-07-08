@@ -488,7 +488,7 @@ Nette.parseJSON = function(s) {
 Nette.toggle = function(id, visible, srcElement) {
 	var elem = document.getElementById(id);
 	if (elem) {
-		elem.style.display = visible ? 'block' : 'none';
+		elem.style.display = visible ? '' : 'none';
 	}
 };
 

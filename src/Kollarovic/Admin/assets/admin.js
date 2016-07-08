@@ -7,6 +7,15 @@ $(document).ready(function () {
 		dateFormat: 'dd.mm.yy',
 		stepMinute: 5
 	});
+
+	$('input.datepicker, input[data-provide="datepicker"]').datepicker({
+		duration: '',
+		changeMonth: true,
+		changeYear: true,
+		//dateFormat: 'mm/dd/yy',
+		dateFormat: 'dd.mm.yy'
+	});
+	
 	
 	// Javascript to enable link to tab
 	var hash = document.location.hash;
