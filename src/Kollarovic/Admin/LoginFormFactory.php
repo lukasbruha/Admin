@@ -27,7 +27,7 @@ class LoginFormFactory implements ILoginFormFactory {
 
 		$this->user = $user;
 		$this->baseFormFactory = $baseFormFactory;
-		$this->translator = $baseFormFactory->translator;
+		$this->translator = $baseFormFactory->getTranslator();
 	}
 
 	public function create() {
@@ -62,7 +62,7 @@ class LoginFormFactory implements ILoginFormFactory {
 			$form->addCheckbox('remember', 'Remember Me');
 			$form->addSubmit('submit', 'Sign In');
 		}
-		$form->onSuccess[] = $this->process;
+		$form->onSuccess[] = [$this, 'process'];
 		return $form;
 	}
 
