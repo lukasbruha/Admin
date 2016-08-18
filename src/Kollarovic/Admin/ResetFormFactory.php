@@ -8,8 +8,11 @@ use Nette\Security\AuthenticationException;
 use Kollarovic\Admin\Form\IBaseFormFactory;
 use Nette\Application\UI\Form;
 use Nette\Localization\ITranslator;
+use Nette\SmartObject;
 
-class ResetFormFactory extends Object implements IResetFormFactory {
+class ResetFormFactory implements IResetFormFactory {
+
+	use SmartObject;
 
 	/** @var User */
 	private $user;

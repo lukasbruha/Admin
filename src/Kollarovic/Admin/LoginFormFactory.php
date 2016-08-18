@@ -8,8 +8,11 @@ use Nette\Security\AuthenticationException;
 use Kollarovic\Admin\Form\IBaseFormFactory;
 use Nette\Application\UI\Form;
 use Nette\Localization\ITranslator;
+use Nette\SmartObject;
 
-class LoginFormFactory extends Object implements ILoginFormFactory {
+class LoginFormFactory implements ILoginFormFactory {
+
+	use SmartObject;
 
 	/** @var User */
 	private $user;

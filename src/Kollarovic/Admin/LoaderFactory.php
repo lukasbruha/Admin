@@ -4,21 +4,17 @@ namespace Kollarovic\Admin;
 
 use Nette\Object;
 use Nette\Http\IRequest;
+use Nette\SmartObject;
 use WebLoader\Compiler;
 use WebLoader\FileCollection;
 use WebLoader\Nette\CssLoader;
 use WebLoader\Nette\JavaScriptLoader;
 
 
-/**
- * @method array getFiles()
- *
- * @method LoaderFactory setOutputDir(string $outputDir)
- * @method LoaderFactory setRoot(string $root)
- */
-class LoaderFactory extends Object implements ILoaderFactory
-{
 
+class LoaderFactory implements ILoaderFactory
+{
+	use SmartObject;
 
 	/** @var string **/
 	private $wwwDir;
@@ -110,4 +106,51 @@ class LoaderFactory extends Object implements ILoaderFactory
 		return preg_match('~(\.js$|\/js)~', $file);
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getOutputDir()
+	{
+		return $this->outputDir;
+	}
+
+	/**
+	 * @param string $outputDir
+	 */
+	public function setOutputDir($outputDir)
+	{
+		$this->outputDir = $outputDir;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getRoot()
+	{
+		return $this->root;
+	}
+
+	/**
+	 * @param string $root
+	 */
+	public function setRoot($root)
+	{
+		$this->root = $root;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getFiles()
+	{
+		return $this->files;
+	}
+
+	/**
+	 * @param array $files
+	 */
+	public function setFiles($files)
+	{
+		$this->files = $files;
+	}
 }

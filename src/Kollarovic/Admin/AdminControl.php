@@ -12,14 +12,14 @@ use Nette\Security\User;
 
 class AdminControl extends Control
 {
-
+	
 	/** @var array */
 	public $onLoggedOut;
 
 	/** @var array */
 	public $onSearch;
 
-	/** @var IItemsFactory */
+	/** @var ItemsFactory */
 	private $itemsFactory;
 
 	/** @var ILoaderFactory */
@@ -33,7 +33,7 @@ class AdminControl extends Control
 
 	/** @var string */
 	private $skin;
-
+	
 	/** @var string */
 	private $logo;
 
@@ -57,13 +57,13 @@ class AdminControl extends Control
 
 	/** @var string */
 	private $footer;
-
+	
 	/** @var string */
 	private $profile;
-
+	
 	/** @var string */
 	private $signOut;
-
+	
 	/** @var string */
 	private $search;
 
@@ -78,14 +78,14 @@ class AdminControl extends Control
 
 	/** @var boolean */
 	private $ajaxRequest = FALSE;
-
+	
 	/** @var boolean */
 	private $showSearch;
-
+	
 	/** @var array */
 	private $layout;
-
-
+	
+	
 
 
 	function __construct(ItemsFactory $itemsFactory, ILoaderFactory $loaderFactory, User $user)
@@ -565,4 +565,9 @@ class AdminControl extends Control
 	{
 		$this->layout = $layout;
 	}
+
+
+
+
+
 }

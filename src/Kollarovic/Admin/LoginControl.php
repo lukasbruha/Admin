@@ -11,13 +11,13 @@ class LoginControl extends Control
 
 	/** @var array */
 	public $onLoggedIn;
-
+	
 	/** @var array */
 	public $onResetPassword;
 
 	/** @var ILoginFormFactory */
 	private $loginFormFactory;
-
+	
 	/** @var IResetFormFactory */
 	private $resetFormFactory;
 
@@ -38,22 +38,22 @@ class LoginControl extends Control
 
 	/** @var string */
 	private $passwordIcon;
-
+	
 	/** @var string */
 	private $forgotPass;
-
+	
 	/** @var string */
 	private $logo;
-
+	
 	/** @var string */
 	private $bg;
-
+	
 	/** @var string */
 	private $resetPassMsg;
-
+	
 	/** @var array */
 	private $layout;
-
+	
 	/** @var ITranslator */
 	private $translator;
 
@@ -104,8 +104,8 @@ class LoginControl extends Control
 		};
 		return $form;
 	}
-
-
+	
+	
 	protected function createComponentFormReset()
 	{
 		$form = $this->resetFormFactory->create();
