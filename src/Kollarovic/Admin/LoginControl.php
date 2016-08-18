@@ -5,41 +5,19 @@ namespace Kollarovic\Admin;
 use Nette\Application\UI\Control;
 use Nette\Localization\ITranslator;
 
-/**
- * @method LoginControl setLayout(array $layout)
- * @method LoginControl setPageTitle(string $pageTitle)
- * @method LoginControl setBg(string $bg)
- * @method LoginControl setResetPassMsg(string $resetPassMsg)
- * @method LoginControl setLogo(string $logo)
- * @method LoginControl setForgotPass(string $forgotPass)
- * @method LoginControl setPageName(string $pageName)
- * @method LoginControl setPageMsg(string $pageMsg)
- * @method LoginControl setUsernameIcon(string $usernameIcon)
- * @method LoginControl setPasswordIcon(string $passwordIcon)
- *
- * @method array  getLayout()
- * @method string getBg()
- * @method string getLogo()
- * @method string getPageTitle()
- * @method string getResetPassMsg()
- * @method string getPageName()
- * @method string getForgotPass()
- * @method string getPageMsg()
- * @method string getUsernameIcon()
- * @method string getPasswordIcon()
- */
+
 class LoginControl extends Control
 {
 
 	/** @var array */
 	public $onLoggedIn;
-	
+
 	/** @var array */
 	public $onResetPassword;
 
 	/** @var ILoginFormFactory */
 	private $loginFormFactory;
-	
+
 	/** @var IResetFormFactory */
 	private $resetFormFactory;
 
@@ -60,22 +38,22 @@ class LoginControl extends Control
 
 	/** @var string */
 	private $passwordIcon;
-	
+
 	/** @var string */
 	private $forgotPass;
-	
+
 	/** @var string */
 	private $logo;
-	
+
 	/** @var string */
 	private $bg;
-	
+
 	/** @var string */
 	private $resetPassMsg;
-	
+
 	/** @var array */
 	private $layout;
-	
+
 	/** @var ITranslator */
 	private $translator;
 
@@ -126,8 +104,8 @@ class LoginControl extends Control
 		};
 		return $form;
 	}
-	
-	
+
+
 	protected function createComponentFormReset()
 	{
 		$form = $this->resetFormFactory->create();
@@ -147,6 +125,262 @@ class LoginControl extends Control
 	protected function createComponentJs()
 	{
 		return $this->loaderFactory->createJavaScriptLoader();
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getOnLoggedIn()
+	{
+		return $this->onLoggedIn;
+	}
+
+	/**
+	 * @param array $onLoggedIn
+	 */
+	public function setOnLoggedIn($onLoggedIn)
+	{
+		$this->onLoggedIn = $onLoggedIn;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getOnResetPassword()
+	{
+		return $this->onResetPassword;
+	}
+
+	/**
+	 * @param array $onResetPassword
+	 */
+	public function setOnResetPassword($onResetPassword)
+	{
+		$this->onResetPassword = $onResetPassword;
+	}
+
+	/**
+	 * @return ILoginFormFactory
+	 */
+	public function getLoginFormFactory()
+	{
+		return $this->loginFormFactory;
+	}
+
+	/**
+	 * @param ILoginFormFactory $loginFormFactory
+	 */
+	public function setLoginFormFactory($loginFormFactory)
+	{
+		$this->loginFormFactory = $loginFormFactory;
+	}
+
+	/**
+	 * @return IResetFormFactory
+	 */
+	public function getResetFormFactory()
+	{
+		return $this->resetFormFactory;
+	}
+
+	/**
+	 * @param IResetFormFactory $resetFormFactory
+	 */
+	public function setResetFormFactory($resetFormFactory)
+	{
+		$this->resetFormFactory = $resetFormFactory;
+	}
+
+	/**
+	 * @return ILoaderFactory
+	 */
+	public function getLoaderFactory()
+	{
+		return $this->loaderFactory;
+	}
+
+	/**
+	 * @param ILoaderFactory $loaderFactory
+	 */
+	public function setLoaderFactory($loaderFactory)
+	{
+		$this->loaderFactory = $loaderFactory;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPageTitle()
+	{
+		return $this->pageTitle;
+	}
+
+	/**
+	 * @param string $pageTitle
+	 */
+	public function setPageTitle($pageTitle)
+	{
+		$this->pageTitle = $pageTitle;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPageName()
+	{
+		return $this->pageName;
+	}
+
+	/**
+	 * @param string $pageName
+	 */
+	public function setPageName($pageName)
+	{
+		$this->pageName = $pageName;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPageMsg()
+	{
+		return $this->pageMsg;
+	}
+
+	/**
+	 * @param string $pageMsg
+	 */
+	public function setPageMsg($pageMsg)
+	{
+		$this->pageMsg = $pageMsg;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUsernameIcon()
+	{
+		return $this->usernameIcon;
+	}
+
+	/**
+	 * @param string $usernameIcon
+	 */
+	public function setUsernameIcon($usernameIcon)
+	{
+		$this->usernameIcon = $usernameIcon;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPasswordIcon()
+	{
+		return $this->passwordIcon;
+	}
+
+	/**
+	 * @param string $passwordIcon
+	 */
+	public function setPasswordIcon($passwordIcon)
+	{
+		$this->passwordIcon = $passwordIcon;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getForgotPass()
+	{
+		return $this->forgotPass;
+	}
+
+	/**
+	 * @param string $forgotPass
+	 */
+	public function setForgotPass($forgotPass)
+	{
+		$this->forgotPass = $forgotPass;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLogo()
+	{
+		return $this->logo;
+	}
+
+	/**
+	 * @param string $logo
+	 */
+	public function setLogo($logo)
+	{
+		$this->logo = $logo;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBg()
+	{
+		return $this->bg;
+	}
+
+	/**
+	 * @param string $bg
+	 */
+	public function setBg($bg)
+	{
+		$this->bg = $bg;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getResetPassMsg()
+	{
+		return $this->resetPassMsg;
+	}
+
+	/**
+	 * @param string $resetPassMsg
+	 */
+	public function setResetPassMsg($resetPassMsg)
+	{
+		$this->resetPassMsg = $resetPassMsg;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getLayout()
+	{
+		return $this->layout;
+	}
+
+	/**
+	 * @param array $layout
+	 */
+	public function setLayout($layout)
+	{
+		$this->layout = $layout;
+	}
+
+	/**
+	 * @return ITranslator
+	 */
+	public function getTranslator()
+	{
+		return $this->translator;
+	}
+
+	/**
+	 * @param ITranslator $translator
+	 */
+	public function setTranslator($translator)
+	{
+		$this->translator = $translator;
 	}
 
 }
