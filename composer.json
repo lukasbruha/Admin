@@ -31,7 +31,7 @@
 		"nette/utils": "^2.4",
 		"latte/latte": "^2.4",
 		"tracy/tracy": "^2.4",
-		"darkling/admin-navigation": "^v1.2",
+		"darkling/admin-navigation": "^1.2",
 		"janmarek/webloader": "^2.5.0",
 		"radekdostal/nette-datetimepicker": "^2.2",
 		"joseki/webloader-filters": "^1.1"
